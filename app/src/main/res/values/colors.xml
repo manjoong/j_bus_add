@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#b3cc4d</color>
-    <color name="colorPrimaryDark">#b3cc4d</color>
+    <color name="colorPrimaryLight">#D5EA7B</color>
     <color name="colorAccent">#ff060a</color>
     <color name="mainBg">#f2f2f2</color>
     <color name="mainColor">#ffffff</color>
@@ -10,7 +10,7 @@
     <color name="hashTag">#e6b781</color>
     <color name="timeFont">#6774e2</color>
     <color name="busline">#d2e25339</color>
-
+    D5EA7B
 
     <color name="pressed1">#959ca4</color>
     <color name="pressed2">#646d79</color>

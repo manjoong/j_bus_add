@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -69,7 +70,6 @@ public class MainActivity extends AppCompatActivity {
     Calendar calender = Calendar.getInstance();
     //날짜 설정
     final int DIALOG_DATE = 1;
-    final int DIALOG_TIME = 2;
 
 
 
@@ -92,6 +92,8 @@ public class MainActivity extends AppCompatActivity {
         final Button trn_button = (Button) findViewById(R.id.trn_btn) ;
         ImageButton ok_button = (ImageButton) findViewById(R.id.enter) ;
         ImageButton date = (ImageButton)findViewById(R.id.date);
+        //도움 이미지
+        final ImageView help = (ImageView)findViewById(R.id.help_img);
 
         //오늘 날짜를 알려줌
         TODAY  = sdf.format(today);
@@ -108,6 +110,25 @@ public class MainActivity extends AppCompatActivity {
                     showDialog(DIALOG_DATE); // 날짜 설정 다이얼로그 띄우기
             }
         });
+
+        //도착지 텍스트 바를 클릭시.
+        et_des.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(kinds == null){
+                    kinds = "exp";
+                }
+                if(kinds == "exp"){
+                    exp_button.callOnClick();
+                }else if (kinds == "sub"){
+                    sub_botton.callOnClick();
+                }else if (kinds == "trn"){
+                    trn_button.callOnClick();
+                }
+
+            }
+        });
+
 
 
         //검색버튼
@@ -142,9 +163,11 @@ public class MainActivity extends AppCompatActivity {
         });
 
         exp_button.setOnClickListener(new View.OnClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
             @Override
             public void onClick(final View view) {
+
+                help.setVisibility(View.INVISIBLE);//도움 이미지 사라짐
+
                 kinds = "exp";
                 setRecyclerView();
                 exep_list();
@@ -160,6 +183,9 @@ public class MainActivity extends AppCompatActivity {
         sub_botton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View view) {
+
+                help.setVisibility(View.INVISIBLE);//도움 이미지 사라짐
+
                 kinds = "sub";
                 setRecyclerView();
                 suburb_list();
@@ -173,6 +199,9 @@ public class MainActivity extends AppCompatActivity {
         trn_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View view) {
+
+                help.setVisibility(View.INVISIBLE);//도움 이미지 사라짐
+
                 kinds = "trn";
                 setRecyclerView();
                 train_list();
@@ -294,9 +323,12 @@ public class MainActivity extends AppCompatActivity {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
+
         APIservice retrofitService = retrofit.create(APIservice.class);
         Call<ExpListItem> call = retrofitService.exep();
         call.enqueue(new Callback<ExpListItem>() {
+
+
 
             @Override
             public void onResponse(Call<ExpListItem> call, Response<ExpListItem> response) {
@@ -327,6 +359,7 @@ public class MainActivity extends AppCompatActivity {
         APIservice retrofitService = retrofit.create(APIservice.class);
         Call<SubListItem> call = retrofitService.suburb();
         call.enqueue(new Callback<SubListItem>() {
+
 
             @Override
             public void onResponse(Call<SubListItem> call, Response<SubListItem> response) {
