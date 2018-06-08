@@ -40,7 +40,7 @@ public class TrnAdapter extends RecyclerView.Adapter<TrnAdapter.ViewHolder> {
     //온바인드뷰홀더는 아이템을 세팅하거나 스크롤링 할때 호출되는 애다. 때문에 position이 필요하다.
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.str_name.setText(items.get(position).getDepName());
+//        holder.str_name.setText(items.get(position).getDepName());
         holder.des_name.setText(items.get(position).getArrName());
         holder.str_time.setText(items.get(position).getDepTime().substring(8,10)+"시"+items.get(position).getDepTime().substring(10, 12)+"분");
         holder.charge.setText(items.get(position).getCharge());
@@ -57,7 +57,7 @@ public class TrnAdapter extends RecyclerView.Adapter<TrnAdapter.ViewHolder> {
 
     //뷰홀더라는 애는 아이템안에 들어갈 텍스트등의 내용을 초기화 하는 역할이다.
     class ViewHolder extends RecyclerView.ViewHolder{
-        TextView str_name;
+//        TextView str_name;
         TextView des_name;
         TextView str_time;
         TextView arr_time;
@@ -77,7 +77,7 @@ public class TrnAdapter extends RecyclerView.Adapter<TrnAdapter.ViewHolder> {
 //                    context.startActivityForResult(intent, 1002);
                 }
             });
-            str_name = itemView.findViewById(R.id.str_name);
+//            str_name = itemView.findViewById(R.id.str_name);
             des_name = itemView.findViewById(R.id.des_name);
             str_time = itemView.findViewById(R.id.str_time);
             charge = itemView.findViewById(R.id.tv_charge);

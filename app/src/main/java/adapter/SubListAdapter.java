@@ -3,6 +3,7 @@ package adapter;
 import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +13,10 @@ import com.example.myapplication.MainActivity;
 import com.example.myapplication.R;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 
+import item.ExpListItem;
 import item.SubListItem;
 
 /**
@@ -24,12 +28,17 @@ import item.SubListItem;
 
 public class SubListAdapter extends RecyclerView.Adapter<SubListAdapter.ViewHolder> {
     Activity context;
-    ArrayList<SubListItem.Data> items;
+    LayoutInflater inflater;
+    private List<SubListItem.Data> select_items;
+    private ArrayList<SubListItem.Data> arrayList;
 
     //커뮤니티 토크 어댑터 함수를 만듬으로써 context와 item을 상속해 준다.
-    public SubListAdapter(Activity context, ArrayList<SubListItem.Data> items) {
+    public SubListAdapter(Activity context, List<SubListItem.Data> select_items) {
         this.context = context;
-        this.items = items;
+        this.select_items = select_items;
+        inflater = LayoutInflater.from(context);
+        this.arrayList = new ArrayList<SubListItem.Data>();
+        this.arrayList.addAll(select_items);
     }
 
     //in create view holder는 뷰홀더에 넣어줄 layout을 찾는 애다.
@@ -41,7 +50,7 @@ public class SubListAdapter extends RecyclerView.Adapter<SubListAdapter.ViewHold
     //온바인드뷰홀더는 아이템을 세팅하거나 스크롤링 할때 호출되는 애다. 때문에 position이 필요하다.
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.object_button.setText(items.get(position).getTername());
+        holder.object_button.setText(select_items.get(position).getTername());
 
 //        holder.like.setText(String.valueOf(items.get(position).getT_like())); //int 값일때
 
@@ -50,7 +59,7 @@ public class SubListAdapter extends RecyclerView.Adapter<SubListAdapter.ViewHold
 
     @Override
     public int getItemCount() {
-        return items.size();
+        return select_items.size();
     }
 
     //뷰홀더라는 애는 아이템안에 들어갈 텍스트등의 내용을 초기화 하는 역할이다.
@@ -62,15 +71,45 @@ public class SubListAdapter extends RecyclerView.Adapter<SubListAdapter.ViewHold
                 @Override
                 public void onClick(View v) {
                     System.out.println(getPosition());
-                    MainActivity.et_des.setText(items.get(getAdapterPosition()).getTername());
                     //어댑터에서는 this를 쓸 수 없으므로 context를 쓴다. context는 이 레이아웃의 변수들?
+                    int i = getAdapterPosition();
+                    Log.e("position1", select_items.get(i).toString());
+                    MainActivity.destination = select_items.get(i).getTername().toString();
+                    Log.e("position1", MainActivity.destination.toString());
+                    MainActivity.ok_button.callOnClick();
+                    Log.e("position2", select_items.get(i).getTername().toString());
+//                    MainActivity.et_des.setText(select_items.get(i).getTername());
+                    //여기서 텍스트가 변경될때마다 mainactivity에 있는 et_des 가 변경되어 onchangelistener가 변경된다... 그래서 포지션 값 달라짐. 따라서 가장 맨 마지막줄에 넣어야함
 
-//                    context.startActivityForResult(intent, 1002);
+
+
+
+//                    Intent intent = new Intent(context , MainActivity.class);
+//                    //변수를 해당 activity로 넘긴다.
+//                    intent.putExtra("exp_ter_name", items.get(getAdapterPosition()).getTerminalName());
+//                    intent.putExtra("exp_ter_id", items.get(getAdapterPosition()).getTerminalId());
+////                    context.startActivityForResult(intent, 1002);
                 }
-
             });
 
             object_button = itemView.findViewById(R.id.object_button);
         }
     }
+
+    public void filter(String charText) {
+        charText = charText.toLowerCase(Locale.getDefault());
+        select_items.clear();
+        if (charText.length() == 0) {
+            select_items.addAll(arrayList);
+        } else {
+            for (SubListItem.Data SubListItem : arrayList) {
+                String name = SubListItem.getTername();
+                if (name.toLowerCase().contains(charText)) {
+                    select_items.add(SubListItem);
+                }
+            }
+        }
+        notifyDataSetChanged();
+    }
+
 }

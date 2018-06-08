@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#b3cc4d</color>
+    <color name="colorPrimary">#B4CC4E</color>
     <color name="colorPrimaryLight">#D5EA7B</color>
     <color name="colorAccent">#ff060a</color>
     <color name="mainBg">#f2f2f2</color>
@@ -15,7 +15,7 @@
     <color name="pressed1">#959ca4</color>
     <color name="pressed2">#646d79</color>
 
-    <color name="focused1">#959ca4</color>
+    <color name="focused1">#C8C8C8</color>
     <color name="focused2">#646d79</color>
 
     <color name="default1">#686e77</color>

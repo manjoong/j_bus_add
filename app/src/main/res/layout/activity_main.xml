@@ -5,9 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.example.myapplication.MainActivity">
 
-    tools:context="com.example.myapplication.MainActivity"
-    tools:showIn="@layout/activity_main">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -15,128 +14,149 @@
         android:weightSum="10">
 
         <LinearLayout
-            android:weightSum="9"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:orientation="horizontal"
+            android:layout_weight="1"
             android:gravity="center_horizontal"
-            android:layout_weight="1.5">
-            <Button
-                android:textColor="@color/mainColor"
-                android:background="@color/colorPrimaryLight"
-                android:layout_width="0dp"
-                android:layout_weight="3"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/exp_btn"
-                android:text="고속버스" />
-            <Button
-                android:textColor="@color/mainColor"
-                android:background="@color/colorPrimaryLight"
-                android:layout_width="0dp"
-                android:layout_weight="3"
-                android:layout_height="wrap_content"
-                android:id="@+id/sub_btn"
-                android:text="시외버스" />
-            <Button
-                android:textColor="@color/mainColor"
-                android:background="@color/colorPrimaryLight"
-                android:layout_width="0dp"
-                android:layout_weight="3"
-                android:layout_height="wrap_content"
-                android:id="@+id/trn_btn"
-                android:text="열차" />
+                android:background="#B4CC4E"
+                android:orientation="horizontal"
+                android:weightSum="9">
+
+                <Button
+                    android:id="@+id/exp_btn"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="1dp"
+                    android:layout_weight="3"
+                    android:background="@color/colorPrimaryLight"
+                    android:text="고속버스"
+                    android:textColor="#8FA91E"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/sub_btn"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="1dp"
+                    android:layout_weight="3"
+                    android:background="@color/colorPrimaryLight"
+                    android:text="시외버스"
+                    android:textColor="#8FA91E"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/trn_btn"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:background="@color/colorPrimaryLight"
+                    android:text="열차 (KTX)"
+                    android:textColor="#8FA91E"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="1.5dp"
+                android:background="@color/focused1" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="2"
             android:orientation="vertical">
+
             <LinearLayout
-                android:weightSum="10"
                 android:layout_width="match_parent"
                 android:layout_height="43dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/tv_design"
+                android:gravity="center_horizontal"
                 android:orientation="horizontal"
-                android:layout_marginBottom="10dp">
-                <Button
-                    android:textColor="@color/mainColor"
-                    android:background="@color/colorPrimary"
-                    android:layout_weight="2"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:text="출발지"
-                    />
-                <EditText
-                    android:textAlignment="center"
-                    android:id="@+id/et_str"
-                    android:layout_width="0dp"
-                    android:layout_weight="6"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/tv_design"
-                    android:text="전주"/>
+                android:weightSum="10">
+
                 <ImageButton
-                    android:src="@drawable/calendar"
-                    android:background="@android:color/transparent"
-                    android:id="@+id/date"
-                    android:layout_weight="2"
+                    android:id="@+id/yesterday"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    />
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/leftarrow" />
+
+                <TextView
+                    android:id="@+id/select_day"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="6"
+                    android:text="2018년 5월 30일"
+                    android:textAlignment="center"
+                    android:textColor="@color/black" />
+
+                <ImageButton
+                    android:id="@+id/tommorw"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/rightarrow" />
+
             </LinearLayout>
+
             <LinearLayout
-                android:weightSum="10"
                 android:layout_width="match_parent"
                 android:layout_height="43dp"
-                android:orientation="horizontal">
-                <Button
-                    android:textColor="@color/mainColor"
-                    android:background="@color/colorPrimary"
-                    android:layout_weight="2"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:text="도착지"
-                    />
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:orientation="horizontal"
+
+                >
+
                 <EditText
-                    android:textAlignment="center"
-                    android:background="@drawable/tv_design"
                     android:id="@+id/et_des"
-                    android:layout_weight="6"
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:hint="도착지"/>
+                    android:background="@drawable/tv_design"
+                    android:hint="목적지 검색"
+                    android:textAlignment="center" />
+
                 <ImageButton
-                    android:src="@drawable/searcher"
-                    android:background="@android:color/transparent"
+
                     android:id="@+id/enter"
-                    android:layout_weight="2"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    />
+                    android:layout_height="0dp"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/searcher" />
             </LinearLayout>
 
         </LinearLayout>
-        <LinearLayout
-            xmlns:android="http://schemas.android.com/apk/res/android"
+        <FrameLayout
             android:layout_width="match_parent"
-            android:orientation="vertical"
             android:layout_height="0dp"
-            android:layout_weight="6.5">
-            <FrameLayout
+            android:layout_weight="7">
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/recycler"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                />
-
-                <ImageView
-                    android:id="@+id/help_img"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/helpman"/>
-            </FrameLayout>
-        </LinearLayout>
+                    android:layout_height="match_parent" />
+            </LinearLayout>
+        </FrameLayout>
     </LinearLayout>
 </LinearLayout>
+
 
 
