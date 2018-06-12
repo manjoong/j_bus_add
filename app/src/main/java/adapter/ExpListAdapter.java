@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.myapplication.MainActivity;
@@ -73,7 +74,17 @@ public class ExpListAdapter extends RecyclerView.Adapter<ExpListAdapter.ViewHold
                     //어댑터에서는 this를 쓸 수 없으므로 context를 쓴다. context는 이 레이아웃의 변수들?
                     int i = getAdapterPosition();
                     Log.e("position1", select_items.get(i).toString());
+                    MainActivity.simple_box.setVisibility(View.VISIBLE);
+                    MainActivity.sub_box.setVisibility(View.GONE);
+
+                    LinearLayout.LayoutParams params
+                            = (LinearLayout.LayoutParams) MainActivity.object_list.getLayoutParams();
+                    params.weight = 8;
+
+                    MainActivity.object_list.setLayoutParams(params);
                     MainActivity.code = select_items.get(i).getTerminalId();
+                    MainActivity.tv_str.setText("전주고속터미널");
+                    MainActivity.tv_des.setText(select_items.get(i).getTerminalName());
                     MainActivity.ok_button.callOnClick();
 //                    MainActivity.et_des.setText(select_items.get(i).getTerminalName());
                     //여기서 텍스트가 변경될때마다 mainactivity에 있는 et_des 가 변경되어 onchangelistener가 변경된다... 그래서 포지션 값 달라짐. 따라서 가장 맨 마지막줄에 넣어야함
@@ -85,7 +96,7 @@ public class ExpListAdapter extends RecyclerView.Adapter<ExpListAdapter.ViewHold
 //                    //변수를 해당 activity로 넘긴다.
 //                    intent.putExtra("exp_ter_name", items.get(getAdapterPosition()).getTerminalName());
 //                    intent.putExtra("exp_ter_id", items.get(getAdapterPosition()).getTerminalId());
-////                    context.startActivityForResult(intent, 1002);
+////                    context.startActivityForResult(intent, 1002); context
                 }
             });
 

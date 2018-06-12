@@ -11,12 +11,14 @@ import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -57,7 +59,14 @@ public class MainActivity extends AppCompatActivity {
     SubAdapter sub_adapter;
     TrnAdapter trn_adapter;
     public static EditText et_des;
+    public static TextView tv_des;
+    public static TextView tv_str;
+    public static LinearLayout simple_box;
+    public static LinearLayout object_list;
+    public static LinearLayout sub_box;
     public static TextView select_day;
+    public static TextView tv_time;
+    public static TextView tv_charge;
     public static String destination;
     public static String kinds;
     public static String code;
@@ -92,13 +101,24 @@ public class MainActivity extends AppCompatActivity {
         final Button exp_button = (Button) findViewById(R.id.exp_btn) ;
         final Button sub_botton = (Button) findViewById(R.id.sub_btn) ;
         final Button trn_button = (Button) findViewById(R.id.trn_btn) ;
+        simple_box = findViewById(R.id.simple_box);
+        object_list = findViewById(R.id.object_list);
+        sub_box = findViewById(R.id.sub_box);
+        tv_str = findViewById(R.id.tv_str);
+        tv_des = findViewById(R.id.tv_des);
         et_des = findViewById(R.id.et_des);
-        ok_button = (ImageButton) findViewById(R.id.enter) ;
+        tv_time = findViewById(R.id.tv_time);
+        tv_charge = findViewById(R.id.tv_charge);
+        ok_button = (ImageButton) findViewById(R.id.enter);
 
 //////////////////////////////////////////////////////////////초기 kinds (없앨수도 있음)/////////////////////////////////////////////////////////////////////////////
         et_des.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                LinearLayout.LayoutParams params
+                        = (LinearLayout.LayoutParams) MainActivity.object_list.getLayoutParams();
+                params.weight = 10;
+                MainActivity.object_list.setLayoutParams(params);
                 Log.e("알림: ", "에디트 텍스트를 선택하였습니다.");
                 if(kinds == null){
                     kinds = "exp";
@@ -121,7 +141,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable arg0) {
                 Log.e("afterTextChanged", et_des.getText().toString());
-
 
                 String text = et_des.getText().toString()
                         .toLowerCase(Locale.getDefault());
@@ -203,7 +222,7 @@ public class MainActivity extends AppCompatActivity {
                     check++;
                 }
                 long lCurTime = today.getTime();
-                today= new java.util.Date(lCurTime+(1000*60*60*24*+1));
+                today= new Date(lCurTime+(1000*60*60*24*+1));
                 TODAY_NEW = today_new.format(today);
                 TODAY_ORIGIN = today_origin.format(today);
                 SELECT_DAY = TODAY_ORIGIN;
@@ -236,7 +255,7 @@ public class MainActivity extends AppCompatActivity {
                     check++;
                 }
                 long lCurTime = today.getTime();
-                today= new java.util.Date(lCurTime+(1000*60*60*24*-1));
+                today= new Date(lCurTime+(1000*60*60*24*-1));
                 TODAY_NEW = today_new.format(today);
                 TODAY_ORIGIN = today_origin.format(today);
                 SELECT_DAY = TODAY_ORIGIN;
@@ -269,6 +288,7 @@ public class MainActivity extends AppCompatActivity {
 //                Log.v("Debug : ", code.toString());
 
                 setRecyclerView();
+                simple_box.setVisibility(View.VISIBLE);
 
                 //날짜 선택을 안하면 오늘 날짜로
                 if(SELECT_DAY == null){
@@ -292,9 +312,15 @@ public class MainActivity extends AppCompatActivity {
         exp_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View view) {
-                kinds = "exp";
+
                 setRecyclerView();
                 exep_list();
+                LinearLayout.LayoutParams params
+                        = (LinearLayout.LayoutParams) MainActivity.object_list.getLayoutParams();
+                params.weight = 10;
+                MainActivity.object_list.setLayoutParams(params);
+                simple_box.setVisibility(View.GONE);
+                kinds = "exp";
                 exp_button.setBackgroundColor(Color.parseColor("#8FA91E"));
                 exp_button.setTextColor(Color.parseColor("#FFFFFF"));
                 sub_botton.setBackgroundColor(Color.parseColor("#D5EA7B"));
@@ -310,6 +336,12 @@ public class MainActivity extends AppCompatActivity {
                 kinds = "sub";
                 setRecyclerView();
                 suburb_list();
+                LinearLayout.LayoutParams params
+                        = (LinearLayout.LayoutParams) MainActivity.object_list.getLayoutParams();
+                params.weight = 10;
+                MainActivity.object_list.setLayoutParams(params);
+                simple_box.setVisibility(View.GONE);
+
                 exp_button.setBackgroundColor(Color.parseColor("#D5EA7B"));
                 exp_button.setTextColor(Color.parseColor("#8FA91E"));
                 sub_botton.setBackgroundColor(Color.parseColor("#8FA91E"));
@@ -326,6 +358,12 @@ public class MainActivity extends AppCompatActivity {
                 kinds = "trn";
                 setRecyclerView();
                 train_list();
+                LinearLayout.LayoutParams params
+                        = (LinearLayout.LayoutParams) MainActivity.object_list.getLayoutParams();
+                params.weight = 10;
+                MainActivity.object_list.setLayoutParams(params);
+                simple_box.setVisibility(View.GONE);
+
                 exp_button.setBackgroundColor(Color.parseColor("#D5EA7B"));
                 exp_button.setTextColor(Color.parseColor("#8FA91E"));
                 sub_botton.setBackgroundColor(Color.parseColor("#D5EA7B"));

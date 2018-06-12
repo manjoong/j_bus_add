@@ -6,94 +6,104 @@
     android:layout_height="wrap_content"
     xmlns:android="http://schemas.android.com/apk/res/android">
 <LinearLayout
+    android:weightSum="10"
     android:layout_marginBottom="5dp"
     android:layout_marginRight="10dp"
     android:layout_marginLeft="10dp"
     android:background="@drawable/tv_design_item"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:gravity="center_horizontal"
+    android:layout_height="70dp"
     xmlns:android="http://schemas.android.com/apk/res/android">
+
     <LinearLayout
-        android:gravity="center_horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:gravity="center"
         android:orientation="horizontal"
-        >
+        android:layout_width="0dp"
+        android:layout_weight="3.5"
+        android:layout_height="match_parent">
         <TextView
-            android:id="@+id/des_name"
-            android:text="광주"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
-    <LinearLayout
-        android:gravity="center_horizontal"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="출발시간 :  "/>
-        <TextView
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textSize="23dp"
             android:id="@+id/str_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="09시 30분"/>
+    </LinearLayout>
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_weight="0.05"
+        android:layout_height="match_parent"
+        android:background="@color/mainBg"/>
+    <LinearLayout
+        android:layout_marginLeft="10dp"
+        android:gravity="center_vertical"
+        android:layout_width="0dp"
+        android:orientation="vertical"
+        android:layout_weight="4.6"
+        android:layout_height="match_parent">
+        <LinearLayout
 
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:textStyle="bold"
+                android:textColor="#9CB33F"
+                android:textSize="16dp"
+                android:id="@+id/arr_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="12시 30분"/>
+            <TextView
+                android:textStyle="bold"
+                android:textColor="#9CB33F"
+                android:textSize="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" 도착예정"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:textSize="15dp"
+                android:text="요금 "
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:textSize="15dp"
+                android:text="12600"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_charge"/>
+            <TextView
+                android:textSize="15dp"
+                android:text="원"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
     </LinearLayout>
     <LinearLayout
-        android:gravity="center_horizontal"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_weight="1.85"
+        android:gravity="right|center_vertical"
+        android:layout_width="0dp"
+        android:layout_height="match_parent">
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="도착시간 :  "/>
-        <TextView
-            android:id="@+id/arr_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="12시 30분"/>
-
-    </LinearLayout>
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-        <TextView
-            android:text="요금 : "
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <TextView
-            android:text="12600원"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/tv_charge"/>
-
-    </LinearLayout>
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-        <TextView
-            android:text="등급 : "
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <TextView
+            android:layout_marginRight="5dp"
             android:text="우등"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/tv_grade"/>
 
     </LinearLayout>
-    <View
-        android:background="#bababa"
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        ></View>
+
 
 </LinearLayout>
 </com.balysv.materialripple.MaterialRippleLayout>

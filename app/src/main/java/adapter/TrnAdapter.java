@@ -1,6 +1,7 @@
 package adapter;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -41,11 +42,16 @@ public class TrnAdapter extends RecyclerView.Adapter<TrnAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
 //        holder.str_name.setText(items.get(position).getDepName());
-        holder.des_name.setText(items.get(position).getArrName());
         holder.str_time.setText(items.get(position).getDepTime().substring(8,10)+"시"+items.get(position).getDepTime().substring(10, 12)+"분");
         holder.charge.setText(items.get(position).getCharge());
         holder.grade.setText(items.get(position).getGrade());
         holder.arr_time.setText(items.get(position).getArrTime().substring(8,10)+"시"+items.get(position).getArrTime().substring(10, 12)+"분");
+
+        if(items.get(position).getGrade().contains("KTX")) {
+            holder.grade.setTextColor(Color.parseColor("#971EA9"));
+        }else{
+            holder.grade.setTextColor(Color.parseColor("#858585"));
+        }
 
 //        holder.like.setText(String.valueOf(items.get(position).getT_like())); //int 값일때
     }
@@ -58,7 +64,6 @@ public class TrnAdapter extends RecyclerView.Adapter<TrnAdapter.ViewHolder> {
     //뷰홀더라는 애는 아이템안에 들어갈 텍스트등의 내용을 초기화 하는 역할이다.
     class ViewHolder extends RecyclerView.ViewHolder{
 //        TextView str_name;
-        TextView des_name;
         TextView str_time;
         TextView arr_time;
         TextView grade;
@@ -78,7 +83,6 @@ public class TrnAdapter extends RecyclerView.Adapter<TrnAdapter.ViewHolder> {
                 }
             });
 //            str_name = itemView.findViewById(R.id.str_name);
-            des_name = itemView.findViewById(R.id.des_name);
             str_time = itemView.findViewById(R.id.str_time);
             charge = itemView.findViewById(R.id.tv_charge);
             grade = itemView.findViewById(R.id.tv_grade);
